@@ -1,28 +1,25 @@
 <!DOCTYPE html>
 <html>
 <body>
-<style>
-</style>
 	<script src="src/pieChart.js"></script>
 	<script>
 		window.onload = function () {
 			var data = [
 				{
 					"name": "Item One",
-					"value": 20
+					"value": 15
 				},
 				{
 					"name": "Item Two",
-					"value": 30
+					"value": 45
 				},
 				{
 					"name": "Item Three",
-					"value": 50
+					"value": 40
 				}
 			];
 
-			new PieChart(data);
-			new PieChart(data, { width: "480px", height: "480px" });
+			new PieChart(data, { size: "260px" });
 		}
 	</script>
 </body>

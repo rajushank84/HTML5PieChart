@@ -27,13 +27,14 @@ PieChart.prototype = {
 	draw: function () {
 		// create the canvas if it doesn't exist
 		this.canvas = this.canvas || this.createCanvas();
+		this.resizeCanvas();
 
 		var width = parseInt(this.attributes.width),
 			height = parseInt(this.attributes.height);
 
 		// set canvas properties
 		var ctx = this.canvas.getContext("2d");
-		ctx.font = "30px Arial";
+		ctx.font = "20px Courier";
 
 		var lastend = 0;
 
@@ -41,11 +42,15 @@ PieChart.prototype = {
 			ctx.fillStyle = this.data[i].color;
 			ctx.beginPath();
 
-			ctx.moveTo(width / 2, height / 2);
-			ctx.arc(width / 2, height / 2, height / 2, lastend, lastend + (Math.PI * 2 * (this.data[i].value / 100)), false);
+			ctx.moveTo(height / 2, height / 2);
+			ctx.arc(height / 2, height / 2, height / 2, lastend, lastend + (Math.PI * 2 * (this.data[i].value / 100)), false);
 			
-			ctx.lineTo(width / 2, height /2 );
+			ctx.lineTo(height / 2, height / 2);
 			ctx.fill();
+
+			// write the text
+			ctx.fillText(this.data[i].name, height + (height/10), (i + 1) * 30);
+			ctx.stroke();
 			
 			lastend += Math.PI * 2 * (this.data[i].value / 100);
 		}
@@ -57,8 +62,8 @@ PieChart.prototype = {
 
 		this.attributes = this.attributes || {};
 
-		this.attributes.width = this.attributes.width || "320px";
-		this.attributes.height = this.attributes.height || "320px";
+		this.attributes.width = this.attributes.size || "320px";
+		this.attributes.height = this.attributes.size || "320px";
 
 		for (attribute in this.attributes) {
 			canvas.setAttribute(attribute, this.attributes[attribute]);
@@ -67,6 +72,21 @@ PieChart.prototype = {
 		document.body.appendChild(canvas);
 
 		return canvas;
+	},
+
+	resizeCanvas: function () {
+		var largest = 0;
+		var height = parseInt(this.attributes.height);
+
+		for (var i = 0; i < this.data.length; i++) {
+			if (this.data[i].name.length > largest) {
+				largest = this.data[i].name.length;
+			}
+		}
+
+		var width = height + (largest * 12) + (height / 10);
+
+		this.canvas.setAttribute("width", width + "px");
 	}
 };
 
