@@ -42,10 +42,11 @@ PieChart.prototype = {
 			ctx.fillStyle = this.data[i].color;
 			ctx.beginPath();
 
-			ctx.moveTo(height / 2, height / 2);
-			ctx.arc(height / 2, height / 2, height / 2, lastend, lastend + (Math.PI * 2 * (this.data[i].value / 100)), false);
+			var point = height / 2;
+
+			ctx.moveTo(point, point);
+			ctx.arc(point + 1, point + 1, point - 2, lastend, lastend + (Math.PI * 2 * (this.data[i].value / 100)), false);
 			
-			ctx.lineTo(height / 2, height / 2);
 			ctx.fill();
 
 			// write the text
