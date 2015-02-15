@@ -75,6 +75,7 @@ PieChart.prototype = {
 		return canvas;
 	},
 
+	// resize the canvas width to account for legend text
 	resizeCanvas: function () {
 		var largest = 0;
 		var height = parseInt(this.attributes.height);
