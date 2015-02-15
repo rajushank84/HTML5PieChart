@@ -2,9 +2,6 @@
 <html>
 <body>
 <style>
-canvas {
-	border: 1px solid #000;
-}
 </style>
 	<script src="src/pieChart.js"></script>
 	<script>
@@ -12,11 +9,11 @@ canvas {
 			var data = [
 				{
 					"name": "Item One",
-					"value": 25
+					"value": 20
 				},
 				{
 					"name": "Item Two",
-					"value": 25
+					"value": 30
 				},
 				{
 					"name": "Item Three",
@@ -25,6 +22,7 @@ canvas {
 			];
 
 			new PieChart(data);
+			new PieChart(data, { width: "480px", height: "480px" });
 		}
 	</script>
 </body>

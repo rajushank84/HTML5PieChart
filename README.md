@@ -6,15 +6,15 @@ Sample usage
 var data = [
 	{
 		"name": "Item One",
-		"value": 50
+		"value": 30
 	},
 	{
 		"name": "Item Two",
-		"value": 20
+		"value": 30
 	},
 	{
 		"name": "Item Three",
-		"value": 30
+		"value": 40
 	}
 ];
 

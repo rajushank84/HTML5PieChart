@@ -25,26 +25,26 @@ PieChart.prototype = {
 
 	// draw the pie chart
 	draw: function () {
-
 		// create the canvas if it doesn't exist
 		this.canvas = this.canvas || this.createCanvas();
+
+		var width = parseInt(this.attributes.width),
+			height = parseInt(this.attributes.height);
 
 		// set canvas properties
 		var ctx = this.canvas.getContext("2d");
 		ctx.font = "30px Arial";
 
-		// TODO: Impement
 		var lastend = 0;
 
-		debugger;
 		for (var i = 0; i < this.data.length; i++) {
 			ctx.fillStyle = this.data[i].color;
 			ctx.beginPath();
 
-			ctx.moveTo(200, 150);
-			ctx.arc(200, 150, 150, lastend, lastend + (Math.PI * 2 * (this.data[i].value / 100)), false);
+			ctx.moveTo(width / 2, height / 2);
+			ctx.arc(width / 2, height / 2, height / 2, lastend, lastend + (Math.PI * 2 * (this.data[i].value / 100)), false);
 			
-			ctx.lineTo(200, 150);
+			ctx.lineTo(width / 2, height /2 );
 			ctx.fill();
 			
 			lastend += Math.PI * 2 * (this.data[i].value / 100);
@@ -53,13 +53,15 @@ PieChart.prototype = {
 
 	// create the canvas DOM object and add it to the body, return it
 	createCanvas: function () {
-		var canvas = document.createElement("canvas"),
-			attributes = this.attributes || {};
-			attributes.width = attributes.width || "480";
-			attributes.height = attributes.height || "480px";
+		var canvas = document.createElement("canvas");
 
-		for (attribute in attributes) {
-			canvas.setAttribute(attribute, attributes[attribute]);
+		this.attributes = this.attributes || {};
+
+		this.attributes.width = this.attributes.width || "320px";
+		this.attributes.height = this.attributes.height || "320px";
+
+		for (attribute in this.attributes) {
+			canvas.setAttribute(attribute, this.attributes[attribute]);
 		}
 
 		document.body.appendChild(canvas);
