@@ -6,7 +6,6 @@
 // The PieChart constructor
 var PieChart = function (data, attributes) {
 	this.data = data;
-	this.initColors();
 	this.attributes = attributes;
 	this.draw();
 };
@@ -28,6 +27,8 @@ PieChart.prototype = {
 		// create the canvas if it doesn't exist
 		this.canvas = this.canvas || this.createCanvas();
 		this.resizeCanvas();
+
+		this.initColors();
 
 		var width = parseInt(this.attributes.width),
 			height = parseInt(this.attributes.height);
